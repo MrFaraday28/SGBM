@@ -1,0 +1,27 @@
+name: Bug
+description: Algo que funcionaba (o debía funcionar) y no funciona
+title: "BUG: "
+labels: ["tipo:bug"]
+body:
+  - type: dropdown
+    id: modulo
+    attributes:
+      label: Módulo
+      options: [Facultad, Materia, Libro, Bibliografía, Transversal]
+    validations:
+      required: true
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Pasos para reproducir
+      value: |
+        1.
+        2.
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Resultado esperado vs. obtenido
+    validations:
+      required: true

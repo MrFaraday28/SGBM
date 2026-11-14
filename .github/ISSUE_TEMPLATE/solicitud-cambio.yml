@@ -1,0 +1,37 @@
+name: Solicitud de cambio
+description: Pedido nuevo o modificación de alcance de un interesado (Control Integrado de Cambios)
+title: "CAMBIO: "
+labels: ["tipo:cambio", "cambio:pendiente"]
+body:
+  - type: input
+    id: solicitante
+    attributes:
+      label: Solicitante
+      placeholder: "Ms. Blanca Duarte de Báez — Vicedecana"
+    validations:
+      required: true
+  - type: input
+    id: fecha
+    attributes:
+      label: Fecha y reunión donde surgió
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Qué se pide
+    validations:
+      required: true
+  - type: textarea
+    id: impacto
+    attributes:
+      label: Análisis de impacto (lo completa el equipo)
+      value: |
+        Módulo(s) afectado(s):
+        Alcance: dentro / fuera del Acta
+        Horas estimadas:
+        Sprint afectado:
+        Riesgo en cronograma:
+  - type: dropdown
+    id: decision
+    attributes:
+      label: Decisión
+      options: [Pendiente, Aprobado → Product Backlog, Diferido, Rechazado]

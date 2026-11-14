@@ -1,0 +1,25 @@
+name: Riesgo
+description: Riesgo nuevo o materializado (se refleja en docs/02-planificacion/registro-riesgos.md)
+title: "RIESGO: "
+labels: ["tipo:riesgo"]
+body:
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Descripción (causa → evento → impacto)
+    validations:
+      required: true
+  - type: dropdown
+    id: probabilidad
+    attributes:
+      label: Probabilidad
+      options: ["1 - Baja", "2 - Media", "3 - Alta"]
+  - type: dropdown
+    id: impacto
+    attributes:
+      label: Impacto
+      options: ["1 - Bajo", "2 - Medio", "3 - Alto"]
+  - type: textarea
+    id: respuesta
+    attributes:
+      label: Respuesta propuesta (evitar / mitigar / transferir / aceptar)

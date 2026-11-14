@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  calidad:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sgbm
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      SGBM_DB_HOST: localhost
+      SGBM_DB_USER: postgres
+      SGBM_DB_PASSWORD: postgres
+      SGBM_DB_NAME: sgbm
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check .
+      - name: Migraciones aplican limpio
+        run: |
+          for f in db/migraciones/V*.sql; do
+            psql -h localhost -U postgres -d sgbm -v ON_ERROR_STOP=1 -f "$f"
+          done
+          psql -h localhost -U postgres -d sgbm -v ON_ERROR_STOP=1 -f db/seeds/datos_prueba.sql
+      - name: Las vistas no saltan capas
+        run: |
+          if grep -rnE "import .*(repositorio|core\.db)|from .*(repositorio|core\.db|core import db)" \
+               src/sgbm/modulos/*/vista.py; then
+            echo "::error::Una vista importa repositorio o core.db"; exit 1
+          fi
+      - name: Tests
+        run: pytest -q

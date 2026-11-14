@@ -1,0 +1,41 @@
+name: Historia de Usuario
+description: Funcionalidad del Product Backlog (se asigna a un milestone "Sprint N")
+title: "HU: "
+labels: ["tipo:historia"]
+body:
+  - type: dropdown
+    id: modulo
+    attributes:
+      label: Módulo (paquete de trabajo de la EDT)
+      options: [Facultad, Materia, Libro, Bibliografía, Transversal]
+    validations:
+      required: true
+  - type: textarea
+    id: historia
+    attributes:
+      label: Historia
+      value: |
+        Como <rol>
+        quiero <funcionalidad>
+        para <beneficio>
+    validations:
+      required: true
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Criterios de aceptación
+      description: Verificables. La HU no está Hecha si alguno falla.
+      value: |
+        - [ ] Dado ... cuando ... entonces ...
+        - [ ]
+    validations:
+      required: true
+  - type: dropdown
+    id: estimacion
+    attributes:
+      label: Estimación (puntos)
+      options: ["1", "2", "3", "5", "8", "13 (dividir la HU)"]
+  - type: input
+    id: accountable
+    attributes:
+      label: Accountable (A) según RACI

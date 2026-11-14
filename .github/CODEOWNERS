@@ -1,0 +1,12 @@
+# Revisores obligatorios por área. Reemplazar <usuario-*> por los usuarios reales de GitHub.
+# Requiere activar "Require review from Code Owners" en la protección de la rama main.
+
+*                         @<usuario-lider>
+/db/                      @<usuario-base-datos>
+/src/sgbm/core/           @<usuario-base-datos> @<usuario-backend>
+/src/sgbm/modulos/**/repositorio.py  @<usuario-base-datos>
+/src/sgbm/modulos/**/servicio.py     @<usuario-backend>
+/src/sgbm/modulos/**/vista.py        @<usuario-frontend>
+/src/sgbm/main.py         @<usuario-frontend>
+/docs/                    @<usuario-documentacion>
+/.github/                 @<usuario-coordinador>

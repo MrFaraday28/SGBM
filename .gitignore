@@ -1,0 +1,32 @@
+# Entorno
+.venv/
+venv/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Flet
+storage/
+.flet/
+
+# Editores / SO
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Documentos fuente de Word: viven en OneDrive/Teams, al repo solo sube el PDF aprobado
+*.docx
+*.doc
+~$*
